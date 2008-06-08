@@ -7,7 +7,10 @@ License:	Nokia EULA
 Group:		Developement
 Source0:	http://www.martin.st/symbian/gnupoc-package-%{version}.tar.gz
 # Source0-md5:	67b86eb218fe390ef0eddf837fbce796
+# http://www.forum.nokia.com/info/sw.nokia.com/id/4a7149a5-95a5-4726-913a-3c6f21eb65a5/S60-SDK-0616-3.0-mr.html
 Source1:	S60-3.2-SDK-f.inc3.2130.zip
+# http://www.forum.nokia.com/info/sw.nokia.com/id/91d89929-fb8c-4d66-bea0-227e42df9053/Open_C_SDK_Plug-In.html
+Source2:	Plugin_For_S60_3rd_Ed.zip
 URL:		http://www.martin.st/symbian/
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
@@ -37,6 +40,42 @@ rm -rf $RPM_BUILD_ROOT%{_datadir}/symbian/s60v3fp2/epoc32/tools_orig
 
 install makelinkdir $RPM_BUILD_ROOT%{_bindir}
 
+# install open c update
+mkdir -p _e
+mkdir -p dst
+unzip -qn %{SOURCE2} -d _e
+
+unshield/unshield -g opencepoc32 x _e/Plugin_For_S60_3rd_Ed/data2.cab
+./lowercase opencepoc32
+./mergedir opencepoc32/epoc32 dst/epoc32
+rmdir opencepoc32
+
+unshield/unshield -g opencppepoc32 x _e/Plugin_For_S60_3rd_Ed/data2.cab
+./lowercase opencppepoc32
+./mergedir opencppepoc32/epoc32 dst/epoc32
+rmdir opencppepoc32
+
+unshield/unshield -g openc x _e/Plugin_For_S60_3rd_Ed/data2.cab
+./lowercase openc
+./mergedir openc/nokia_plugin dst/nokia_plugin
+rm -rf openc
+
+unshield/unshield -g opencpp x _e/Plugin_For_S60_3rd_Ed/data2.cab
+./lowercase opencpp
+./mergedir opencpp/nokia_plugin dst/nokia_plugin
+rm -rf opencpp
+
+./fixinclude dst/epoc32/include
+./fixinclude dst/nokia_plugin/openc/s60opencex
+./fixinclude dst/nokia_plugin/opencpp/s60boostex
+./fixinclude dst/nokia_plugin/opencpp/s60opencppex
+
+./fixexamples dst/nokia_plugin/openc/s60opencex
+./fixexamples dst/nokia_plugin/opencpp/s60boostex
+./fixexamples dst/nokia_plugin/opencpp/s60opencppex
+
+cp -r dst/* $RPM_BUILD_ROOT%{_datadir}/symbian/s60v3fp2
+
 %clean
 rm -rf $RPM_BUILD_ROOT
 
@@ -49,6 +88,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/symbian/s60v3fp2/examples
 %{_datadir}/symbian/s60v3fp2/GCCE_readme.txt
 %{_datadir}/symbian/s60v3fp2/Nokia_EULA.txt
+%{_datadir}/symbian/s60v3fp2/nokia_plugin
 %{_datadir}/symbian/s60v3fp2/releasenotes.txt
 %{_datadir}/symbian/s60v3fp2/S60_3rd_Edition_FP2_SDK_for_Symbian_OS_Installation_Guide_V1.0.pdf
 %{_datadir}/symbian/s60v3fp2/s60cppexamples
