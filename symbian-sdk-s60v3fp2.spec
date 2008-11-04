@@ -7,8 +7,8 @@ License:	Nokia EULA
 Group:		Developement
 Source0:	http://www.martin.st/symbian/gnupoc-package-%{version}.tar.gz
 # Source0-md5:	67b86eb218fe390ef0eddf837fbce796
-# http://www.forum.nokia.com/info/sw.nokia.com/id/4a7149a5-95a5-4726-913a-3c6f21eb65a5/S60-SDK-0616-3.0-mr.html
-Source1:	S60-3.2-SDK-f.inc3.2130.zip
+# http://www.forum.nokia.com/info/sw.nokia.com/id/ec866fab-4b76-49f6-b5a5-af0631419e9c/S60_All_in_One_SDKs.html
+Source1:	S60_3rd_Edition_SDK_Feature_Pack_2_v1_1_en.zip
 # http://www.forum.nokia.com/info/sw.nokia.com/id/91d89929-fb8c-4d66-bea0-227e42df9053/Open_C_SDK_Plug-In.html
 Source2:	Plugin_For_S60_3rd_Ed.zip
 URL:		http://www.martin.st/symbian/
@@ -89,8 +89,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/symbian/s60v3fp2/GCCE_readme.txt
 %{_datadir}/symbian/s60v3fp2/Nokia_EULA.txt
 %{_datadir}/symbian/s60v3fp2/nokia_plugin
-%{_datadir}/symbian/s60v3fp2/releasenotes.txt
-%{_datadir}/symbian/s60v3fp2/S60_3rd_Edition_FP2_SDK_for_Symbian_OS_Installation_Guide_V1.0.pdf
+%{_datadir}/symbian/s60v3fp2/S60_3rd_Edition_FP2_SDK_for_Symbian_OS_Installation_Guide_V1.1.pdf
 %{_datadir}/symbian/s60v3fp2/s60cppexamples
 %{_datadir}/symbian/s60v3fp2/s60tools
 %{_datadir}/symbian/s60v3fp2/series60doc
