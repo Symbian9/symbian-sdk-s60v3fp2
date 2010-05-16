@@ -12,6 +12,7 @@ Source1:	S60_3rd_Edition_SDK_Feature_Pack_2_v1_1_en.zip
 # http://www.forum.nokia.com/info/sw.nokia.com/id/91d89929-fb8c-4d66-bea0-227e42df9053/Open_C_SDK_Plug-In.html
 Source2:	Plugin_For_S60_3rd_Ed.zip
 URL:		http://www.martin.st/symbian/
+BuildRequires:	unzip
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %define		no_install_post_strip	1
